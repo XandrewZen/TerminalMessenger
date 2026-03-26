@@ -1,0 +1,50 @@
+<RegisterScreen>:
+    name: 'register'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [40, 40, 40, 40]
+        spacing: 15
+
+        Label:
+            text: "> INITIALIZING NEW_USER_PROMPT...\n> FILL ALL PARAMETERS"
+            font_size: '16sp'
+            color: 0.3, 1.0, 0.3, 1
+            size_hint_y: None
+            height: 100
+            halign: 'left'
+            valign: 'top'
+            text_size: self.size
+
+        TermInput:
+            id: reg_username
+            hint_text: "set_identity: "
+
+        TermInput:
+            id: reg_email
+            hint_text: "contact_address (email): "
+
+        TermInput:
+            id: reg_password
+            hint_text: "secure_key: "
+            password: True
+
+        TermInput:
+            id: reg_confirm_password
+            hint_text: "confirm_secure_key: "
+            password: True
+
+        Widget:
+            size_hint_y: None
+            height: 20
+
+        TermButton:
+            text: "[ CREATE_ACCOUNT ]"
+            on_press: print("Register Logic Here")
+
+        TermButton:
+            text: "[ ABORT_AND_RETURN ]"
+            on_press: app.root.current = 'login'
+
+        Widget:
+            size_hint_y: 1

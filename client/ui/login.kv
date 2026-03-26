@@ -1,27 +1,41 @@
 <LoginScreen>:
     name: 'login'
+
     BoxLayout:
         orientation: 'vertical'
-        padding: 20
-        spacing: 10
+        padding: [40, 50, 40, 50]
+        spacing: 20
 
         Label:
-            text: "TerminalMessenger"
-            font_size: 32
+            text: "> TERMINAL_MESSENGER v1.0.0\n> STATUS: READY..."
+            font_size: '18sp'
+            color: 0.3, 1.0, 0.3, 1
+            size_hint_y: None
+            height: 120
+            halign: 'left'
+            valign: 'top'
+            text_size: self.size
 
-        TextInput:
-            hint_text: "Username"
-            multiline: False
+        TermInput:
+            id: username
+            hint_text: "user@access:~$"
 
-        TextInput:
-            hint_text: "Password"
-            multiline: False
+        TermInput:
+            id: password
+            hint_text: "password: "
             password: True
 
-        Button:
-            text: "Login"
-            on_press: app.root.current = 'chat'
+        Widget:
+            size_hint_y: None
+            height: 30
 
-        Button:
-            text: "Register"
+        TermButton:
+            text: "[ AUTHENTICATE ]"
+            on_press: app.root.current = 'inbox'
+
+        TermButton:
+            text: "[ NEW_CONNECTION ]"
             on_press: app.root.current = 'register'
+
+        Widget:
+            size_hint_y: 1

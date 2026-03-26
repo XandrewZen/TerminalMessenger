@@ -1,0 +1,71 @@
+<ChatScreen>:
+    name: 'chat'
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: [10, 10, 10, 10]
+        spacing: 10
+
+        # Header
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            Label:
+                text: f"> SESSION: {root.chat_with} // ENCRYPTION: ENABLED"
+                font_size: '14sp'
+                halign: 'left'
+                text_size: self.size
+                color: 0.3, 1.0, 0.3, 1
+
+            TermButton:
+                text: "[ RETURN ]"
+                size_hint_x: None
+                width: 100
+                on_press: app.root.current = 'inbox'
+
+        # Chat Log Area
+        ScrollView:
+            id: scroller
+            do_scroll_x: False
+            canvas.before:
+                Color:
+                    rgba: 0.3, 1.0, 0.3, 0.1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+                Color:
+                    rgba: 0.3, 1.0, 0.3, 0.3
+                Line:
+                    rectangle: self.x, self.y, self.width, self.height
+                    width: 1
+
+            Label:
+                id: chat_logs
+                text: f"> SYSTEM: STARTING_SESSION_WITH >> {root.chat_with}...\n\n"
+                size_hint_y: None
+                height: max(self.texture_size[1], scroller.height)
+                text_size: self.width - 20, self.height
+                halign: 'left'
+                valign: 'bottom'
+                font_size: '14sp'
+                color: 0.3, 1.0, 0.3, 1
+                padding: [10, 10]
+                markup: True
+
+        # Input Area
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 5
+
+            TermInput:
+                id: message_input
+                hint_text: "enter_payload: "
+                size_hint_x: 0.8
+                multiline: False
+                on_text_validate: root.send_message()
+
+            TermButton:
+                text: ">>"
+                size_hint_x: 0.2
+                on_press: root.send_message()
