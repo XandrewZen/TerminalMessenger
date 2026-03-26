@@ -25,4 +25,4 @@ class MessengerApp(App):
         return sm
 
 if __name__ == '__main__':
-    MessengerApp().run()
+    MessengerApp().run() #zarif
